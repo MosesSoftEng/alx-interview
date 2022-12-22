@@ -35,6 +35,6 @@ def pascal_triangle(n):
         # Calculate middle numbers
         for y in range(1, x-1):
             pascal_triangle[x-1][y] = \
-            pascal_triangle[x-2][y-1] + pascal_triangle[x-2][y]
+                pascal_triangle[x-2][y-1] + pascal_triangle[x-2][y]
 
     return pascal_triangle
