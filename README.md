@@ -4,10 +4,15 @@
 
 ## Project setup.
 ```bash
+# Create project directory.
 mkdir ./alx-interview
 cd ./alx-interview
 
+# Create new repo.
 git init
+
+# Install python linter.
+pip install pycodestyle==2.8.0
 ```
 
 # :computer: Projects.
