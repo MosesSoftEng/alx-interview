@@ -3,22 +3,31 @@
 1. Python.
 2. Pascal's Triangle.
 
-
-## Project setup.
+## :wrench: Project setup.
 ```bash
+# Create project directory.
 mkdir ./0x00-pascal_triangle
 touch ./0x00-pascal_triangle/README.md
-
-touch ./0x00-pascal_triangle/0-pascal_triangle.py
-chmod +x ./0x00-pascal_triangle/0-pascal_triangle.py
 ```
 
 # :computer: Tasks.
-## [0. Pascal's Triangle]()
+## [0. Pascal's Triangle](0-pascal_triangle.py)
+```bash
+# Create task file and set write permission.
+touch ./0-pascal_triangle.py
+chmod +x ./0-pascal_triangle.py
+./0-pascal_triangle.py
+
+pycodestyle ./0-pascal_triangle.py
+
+# Create test file
+touch ./0-main.py
+chmod +x ./0-main.py
+./0-main.py
+```
 
 # :books: References
-1. []()
-
+1. [Pascal's Triangle](https://www.cuemath.com/algebra/pascals-triangle/)
 
 # :man: Author and Credits.
 This project was done by [SE. Moses Mwangi](https://github.com/MosesSoftEng). Feel free to get intouch with me;
