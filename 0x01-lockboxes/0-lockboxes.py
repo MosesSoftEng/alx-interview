@@ -3,10 +3,9 @@
 This is a module that provides a function for determining if all
 boxes in a given list can be opened.
 """
-from typing import List
 
 
-def canUnlockAll(boxes: List[List[int]]) -> bool:
+def canUnlockAll(boxes):
     """
     This function takes a list of lists and returns a boolean indicating
         whether all boxes in the list can be opened. A key with the same
