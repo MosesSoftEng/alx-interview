@@ -11,7 +11,7 @@ touch ./0x00-pascal_triangle/README.md
 ```
 
 # :computer: Tasks.
-## [0. Pascal's Triangle](0-pascal_triangle.py)
+## [1. Don't make a promise...if you know you can't keep it](1-promise.js)
 ```bash
 # Create task file and set write permission.
 touch ./0-pascal_triangle.py
@@ -19,6 +19,7 @@ chmod +x ./0-pascal_triangle.py
 ./0-pascal_triangle.py
 
 pycodestyle ./0-pascal_triangle.py
+pep8 ./0-pascal_triangle.py
 
 # Create test file
 touch ./0-main.py
