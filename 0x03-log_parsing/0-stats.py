@@ -1,37 +1,48 @@
 #!/usr/bin/python3
-'''a script that reads stdin line by line and computes metrics'''
-
+"""0-stats.py"""
 
 import sys
 
-cache = {'200': 0, '301': 0, '400': 0, '401': 0,
-         '403': 0, '404': 0, '405': 0, '500': 0}
-total_size = 0
-counter = 0
+code_status = {
+    200: 0,
+    301: 0,
+    400: 0,
+    401: 0,
+    403: 0,
+    404: 0,
+    405: 0,
+    500: 0
+}
+total_sizes = 0
+count_line = 1
+
+
+def printStats():
+    """Print the final statistics after all lines have been read"""
+    print('File size: {}'.format(total_sizes))
+    for code in sorted(code_status.keys()):
+        if code_status[code] != 0:
+            print('{}: {}'.format(code, code_status[code]))
+
 
 try:
     for line in sys.stdin:
-        line_list = line.split(" ")
-        if len(line_list) > 4:
-            code = line_list[-2]
-            size = int(line_list[-1])
-            if code in cache.keys():
-                cache[code] += 1
-            total_size += size
-            counter += 1
+        try:
+            line = line[:-1]
+            parts = line.split(' ')
+            total_sizes += int(parts[-1])
+            status_code = int(parts[-2])
+            if status_code in code_status:
+                code_status[status_code] += 1
+        except Exception:
+            pass
 
-        if counter == 10:
-            counter = 0
-            print('File size: {}'.format(total_size))
-            for key, value in sorted(cache.items()):
-                if value != 0:
-                    print('{}: {}'.format(key, value))
+        if count_line % 10 == 0:
+            printStats()
+        count_line += 1
 
-except Exception as err:
-    pass
+except KeyboardInterrupt:
+    printStats()
+    raise
 
-finally:
-    print('File size: {}'.format(total_size))
-    for key, value in sorted(cache.items()):
-        if value != 0:
-            print('{}: {}'.format(key, value))
+printStats()
