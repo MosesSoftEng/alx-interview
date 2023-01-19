@@ -10,6 +10,7 @@ status_codes = {200: 0, 301: 0, 400: 0, 401: 0,
                 403: 0, 404: 0, 405: 0, 500: 0}
 line_count = 0
 
+
 # Read input line by line
 for line in sys.stdin:
     # Check if line matches the specified format
