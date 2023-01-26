@@ -31,7 +31,7 @@ cd ./0x00-pascal_triangle
 ### :heavy_check_mark: Solution.
 > [:point_right: Go to solution](0x00-pascal_triangle)
 
-## [0x00. Pascal's Triangle](0x01. Lockboxes)
+## [0x01 lockboxes](0x01-lockboxes)
 Lockboxes interview question.
 
 ### :wrench: Project setup.
@@ -43,7 +43,22 @@ cd ./0x01-lockboxes
 ```
 
 ### :heavy_check_mark: Solution.
-> [:point_right: Go to solution](0x01. Lockboxes)
+> [:point_right: Go to solution](0x01-lockboxes)
+
+
+## [0x03. Log Parsing](0x03-log_parsing)
+Log Parsing interview question.
+
+### :wrench: Project setup.
+```bash
+# Create project directory.
+mkdir ./0x03-log_parsing
+touch ./0x03-log_parsing/README.md
+cd ./0x03-log_parsing
+```
+
+### :heavy_check_mark: Solution.
+> [:point_right: Go to solution](0x03-log_parsing)
 
 # :man: Author and Credits.
 This project was done by [SE. Moses Mwangi](https://github.com/MosesSoftEng). Feel free to get intouch with me;
