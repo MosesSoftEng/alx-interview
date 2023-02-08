@@ -1,107 +1,140 @@
 #!/usr/bin/python3
-"""N queens solution finder module.
 """
+   Description: The N queens puzzle is the challenge of placing N non-attacking
+                queens on an N×N chessboard. Write a program that solves the N
+                queens problem.
+   Usage: nqueens N:
+          If the user called the program with the wrong number of arguments,
+          print Usage: nqueens N, followed by a new line, and exit with the
+          status 1
+   where N must be an integer greater or equal to 4:
+          If N is not an integer, print N must be a number, followed by a new
+          line, and exit with the status 1
+          If N is smaller than 4, print N must be at least 4, followed by a new
+          line, and exit with the status 1
+   The program should print every possible solution to the problem:
+          One solution per line
+          Format: see example
+          You don’t have to print the solutions in a specific order
+   You are only allowed to import the sys module
+"""
+
+
 import sys
 
 
-solutions = []
-"""The list of possible solutions to the N queens problem.
-"""
-n = 0
-"""The size of the chessboard.
-"""
-pos = None
-"""The list of possible positions on the chessboard.
-"""
-
-
-def get_input():
-    """Retrieves and validates this program's argument.
-    Returns:
-        int: The size of the chessboard.
-    """
-    global n
-    n = 0
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    try:
-        n = int(sys.argv[1])
-    except Exception:
-        print("N must be a number")
-        sys.exit(1)
-    if n < 4:
-        print("N must be at least 4")
-        sys.exit(1)
-    return n
-
-
-def is_attacking(pos0, pos1):
-    """Checks if the positions of two queens are in an attacking mode.
+def print_board(board):
+    """ print_board
     Args:
-        pos0 (list or tuple): The first queen's position.
-        pos1 (list or tuple): The second queen's position.
-    Returns:
-        bool: True if the queens are in an attacking position else False.
+        board - list of list with length sys.argv[1]
     """
-    if (pos0[0] == pos1[0]) or (pos0[1] == pos1[1]):
+    new_list = []
+    for i, row in enumerate(board):
+        value = []
+        for j, col in enumerate(row):
+            if col == 1:
+                value.append(i)
+                value.append(j)
+        new_list.append(value)
+
+    print(new_list)
+
+
+def isSafe(board, row, col, number):
+    """ isSafe
+    Args:
+        board - list of list with length sys.argv[1]
+        row - row to check if is safe doing a movement in this position
+        col - col to check if is safe doing a movement in this position
+        number: size of the board
+    Return: True of False
+    """
+
+    # Check this row in the left side
+    for i in range(col):
+        if board[row][i] == 1:
+            return False
+
+    # Check upper diagonal on left side
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+
+    for i, j in zip(range(row, number, 1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+
+    return True
+
+
+def solveNQUtil(board, col, number):
+    """ Auxiliar method to find the posibilities of answer
+    Args:
+        board - Board to resolve
+        col - Number of col
+        number - size of the board
+    Returns:
+        All the posibilites to solve the problem
+    """
+
+    if (col == number):
+        print_board(board)
         return True
-    return abs(pos0[0] - pos1[0]) == abs(pos0[1] - pos1[1])
+    res = False
+    for i in range(number):
+
+        if (isSafe(board, i, col, number)):
+
+            # Place this queen in board[i][col]
+            board[i][col] = 1
+
+            # Make result true if any placement
+            # is possible
+            res = solveNQUtil(board, col + 1, number) or res
+
+            board[i][col] = 0  # BACKTRACK
+
+    return res
 
 
-def group_exists(group):
-    """Checks if a group exists in the list of solutions.
+def solve(number):
+    """ Find all the posibilities if exists
     Args:
-        group (list of integers): A group of possible positions.
-    Returns:
-        bool: True if it exists, otherwise False.
+        number - size of the board
     """
-    global solutions
-    for stn in solutions:
-        i = 0
-        for stn_pos in stn:
-            for grp_pos in group:
-                if stn_pos[0] == grp_pos[0] and stn_pos[1] == grp_pos[1]:
-                    i += 1
-        if i == n:
-            return True
-    return False
+    board = [[0 for i in range(number)]for i in range(number)]
+
+    if not solveNQUtil(board, 0, number):
+        return False
+
+    return True
 
 
-def build_solution(row, group):
-    """Builds a solution for the n queens problem.
+def validate(args):
+    """ Validate the input data to verify if the size to
+        answer is posible
     Args:
-        row (int): The current row in the chessboard.
-        group (list of lists of integers): The group of valid positions.
+        args - sys.argv
     """
-    global solutions
-    global n
-    if row == n:
-        tmp0 = group.copy()
-        if not group_exists(tmp0):
-            solutions.append(tmp0)
+    if (len(args) == 2):
+        # Validate data
+        try:
+            number = int(args[1])
+        except Exception:
+            print("N must be a number")
+            exit(1)
+        if number < 4:
+            print("N must be at least 4")
+            exit(1)
+        return number
     else:
-        for col in range(n):
-            a = (row * n) + col
-            matches = zip(list([pos[a]]) * len(group), group)
-            used_positions = map(lambda x: is_attacking(x[0], x[1]), matches)
-            group.append(pos[a].copy())
-            if not any(used_positions):
-                build_solution(row + 1, group)
-            group.pop(len(group) - 1)
+        print("Usage: nqueens N")
+        exit(1)
 
 
-def get_solutions():
-    """Gets the solutions for the given chessboard size.
+if _name_ == "_main_":
+    """ Main method to execute the application
     """
-    global pos, n
-    pos = list(map(lambda x: [x // n, x % n], range(n ** 2)))
-    a = 0
-    group = []
-    build_solution(a, group)
 
-
-n = get_input()
-get_solutions()
-for solution in solutions:
-    print(solution)
+    number = validate(sys.argv)
+    solve(number)
