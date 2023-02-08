@@ -105,7 +105,7 @@ chmod +x ./0-generator.py
 ```
 
 ### :heavy_check_mark: Solution.
-> [:point_right:  Open 0-stats.py](0-stats.py
+> [:point_right:  Open 0-stats.py](0-stats.py)
 
 # :books: References
 1. [Python Lists](https://www.w3schools.com/python/python_lists.asp)
