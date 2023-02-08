@@ -132,7 +132,7 @@ def validate(args):
         exit(1)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     """ Main method to execute the application
     """
 
