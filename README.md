@@ -60,6 +60,22 @@ cd ./0x03-log_parsing
 ### :heavy_check_mark: Solution.
 > [:point_right: Go to solution](0x03-log_parsing)
 
+<!---->
+## [0. Island Perimeter](0x09-island_perimeter)
+Island Perimeter interview question.
+
+### :wrench: Project setup.
+```bash
+# Create project directory.
+mkdir ./0x09-island_perimeter
+touch ./0x09-island_perimeter/README.md
+cd ./0x09-island_perimeter
+```
+
+### :heavy_check_mark: Solution.
+> [:point_right: Go to solution](0x09-island_perimeter)
+<!---->
+
 # :man: Author and Credits.
 This project was done by [SE. Moses Mwangi](https://github.com/MosesSoftEng). Feel free to get intouch with me;
 
