@@ -76,6 +76,22 @@ cd ./0x09-island_perimeter
 > [:point_right: Go to solution](0x09-island_perimeter)
 <!---->
 
+<!---->
+## [0. Prime Game](00x0A-primegame)
+Prime game interview question.
+
+### :wrench: Project setup.
+```bash
+# Create project directory.
+mkdir ./0x0A-primegame
+touch ./0x0A-primegame/README.md
+cd ./0x09-island_perimeter
+```
+
+### :heavy_check_mark: Solution.
+> [:point_right: Go to solution](0x0A-primegame)
+<!---->
+
 # :man: Author and Credits.
 This project was done by [SE. Moses Mwangi](https://github.com/MosesSoftEng). Feel free to get intouch with me;
 
