@@ -5,23 +5,42 @@
 def isWinner(x, nums):
     """Determines the winner of a prime game session with `x` rounds.
     """
-    if x < 1 or not nums:
-        return None
-    marias_wins, bens_wins = 0, 0
-    # generate primes with a limit of the maximum number in nums
-    n = max(nums)
-    primes = [True for _ in range(1, n + 1, 1)]
-    primes[0] = False
-    for i, is_prime in enumerate(primes, 1):
-        if i == 1 or not is_prime:
+    def is_prime(n):
+        if n <= 1:
+            return False
+        for i in range(2, int(n ** 0.5) + 1):
+            if n % i == 0:
+                return False
+        return True
+
+    winners = {'Maria': 0, 'Ben': 0}
+    for n in nums:
+        if max(nums) < 2:
+            winners['Ben'] += 1
             continue
-        for j in range(i + i, n + 1, i):
-            primes[j - 1] = False
-    # filter the number of primes less than n in nums for each round
-    for _, n in zip(range(x), nums):
-        primes_count = len(list(filter(lambda x: x, primes[0: n])))
-        bens_wins += primes_count % 2 == 0
-        marias_wins += primes_count % 2 == 1
-    if marias_wins == bens_wins:
+
+        primes = [i for i in range(2, n + 1) if is_prime(i)]
+        maria_turn = True
+        while primes:
+            can_remove = False
+            for p in primes:
+                if n % p == 0:
+                    can_remove = True
+                    primes.remove(p)
+                    for i in range(p, n + 1, p):
+                        if i in primes:
+                            primes.remove(i)
+                    n -= n // p
+                    break
+            if not can_remove:
+                break
+            maria_turn = not maria_turn
+        if maria_turn:
+            winners['Ben'] += 1
+        else:
+            winners['Maria'] += 1
+
+    if winners['Maria'] == winners['Ben']:
         return None
-    return 'Maria' if marias_wins > bens_wins else 'Ben'
+    else:
+        return max(winners, key=winners.get)
