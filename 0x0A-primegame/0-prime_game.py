@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines isWinner function."""
+"""Module defining isWinner function."""
 
 
 def isWinner(x, nums):
